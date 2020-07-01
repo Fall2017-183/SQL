@@ -42,3 +42,14 @@ values
 ('Pablo Escobar','666-56-6666','Rita Bita'),
 ('Al Capone','888-91-8870','Pablo Escobar'),
 ('Bonnie Clyde','111-22-3333','Al Capone');
+
+Select *
+From Department
+
+Select * 
+From Employee
+
+Select * 
+From Supervisor
+
+
