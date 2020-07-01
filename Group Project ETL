@@ -380,3 +380,57 @@ colnames(temp_sum_location_df) <- c('case_id','location_id','city_id','borough_i
                                     'zip_id','address_id','street_id','geo_id','coord_id')
 
 dbWriteTable(con, name="sum_location", value=temp_sum_location_df, row.names=FALSE, append=TRUE)
+
+
+1. Which zip code zone have more cases? List the top 5 with numbers of cases. SELECT z.Incident_Zip zipcode, COUNT(s.Case_ID) numbers_of_cases
+FROM Zip z, Sum_Location s
+WHERE z.Zip_id = s.Zip_id
+GROUP BY z.Incident_Zip LIMIT 5
+2. What channel do people like to use when reporting different types of complaints? SELECT t.Complain_Type, COUNT(c.Channel) popular_channel
+FROM Channel c, Complain t, Case a
+WHERE c.Channel_ID = a.Channel_ID AND t.Complain_ID = a.Complain_ID
+GROUP BY t.Complain_Type ORDER BY COUNT(c.Channel) LIMIT 1
+3. Tracing back for 3 days, what are the top three types of complaints? SELECT t.Complain_Type, COUNT(c.Case_ID) numbers_of_complaints FROM Complain as t, Date as d, Case as c
+ Here are some examples of analytical procedures that led to valuable insights for clients.
+ We will use basic SQL for examples here.
+ WHERE c.Complain_ID = t.Complain_ID AND c.Date_ID = d.Date_ID AND d.Date >= (current_date - 3)
+GROUP BY t.Complain_Type
+ORDER BY COUNT(c.Case_ID)
+LIMIT 3
+4. Tracing back for 3 days, what percentage of cases is solved for each borough?
+FROM Date d, Status s, Case c, Borough b, Sum_Location l
+WHERE c.Status_ID = s.Status_ID AND c.Date_ID = d.Date_ID
+AND b.Borough_ID = l.Borough_ID AND c.Location_ID = l.Location_ID AND d.Date >= (current_date - 3)
+GROUP BY b.Borough
+5. Tracing back for 3 days, how many cases does DOHMH/NYPD received? SELECT a.Agency, COUNT(c.Case_ID) number_of_cases
+FROM Date d, Agency a, Case c
+WHERE a.Agency_ID = c.Agency_ID AND c.Date_ID = d.Date_ID
+AND d.Date >= (current_date - 3) GROUP BY a.Agency
+      SELECT b.Borough, (COUNT(c.Case_ID)/ COUNT DISTINCT(c.Case_id))
+ percentage_of_cases_in_process_or_solved
+           
+ 6. Are there more cases today compared to yesterday?
+GROUP BY d.Date ORDER BY d.Date LIMIT 2
+7. What are the top three types of complaints that occur in each zip code zone? SELECT z.Incident_Zip, COUNT(c.Case_ID) number_of_cases
+FROM Case c, Complain t, Zip z, Sum_Location l
+WHERE c.Complain_ID = t.Complain_ID AND c.Location_ID = l.Location_ID
+AND l.Zip_ID = z.Zip_ID GROUP BY z.Incident_Zip ORDER BY COUNT(c.Case_ID) LIMIT 3
+8. Which type of complaint does different types of locations have the most? SELECT DISTINCT t.Complain_Type, Location_Type
+FROM Complain as t, Location as l, Sum_Location as sl, Case as c,
+GROUP BY t.Complain_Type
+ SELECT d.Date, COUNT(c.Case_ID) number_of_cases
+ FROM Date d, Case c
+ WHERE c.Date_ID = d.Date_ID
+               WHERE t.Complain_ID = c.Complain_ID, AND l.Location_ID = sl.Location_ID, AND
+ sl.Case_ID = c.Case_ID
+ 
+ORDER BY COUNT(c.Case_ID) LIMIT 1
+9. What types of complaints are handled by which agency (DOHMH/NYPD)? SELECT DISTINCT t.Complain_Type, Agency_ID
+FROM Agency as a, Complain as t, Case as c
+WHERE a.Agency_ID = c.Agency_ID AND t.Complain_ID = c.Complain_ID
+SELECT z.Zip, c.Agency, COUNT(c.Case_ID)
+FROM Case c, Sum_Location sl, Zip z, Agency a
+WHERE c.Case_ID = sl.Case_ID AND sl.Zip_ID = z.Zip_ID AND c.Agency_ID = a.Agency_ID
+GROUP BY c.Agency, z.Zip
+ORDER BY COUNT(c.Case_ID)
+LIMIT 1
