@@ -1,0 +1,44 @@
+create table Department(
+					dep_name varchar(15) not null,
+					manager_name varchar(20),
+					starting_date date,
+					primary key(dep_name))	
+create table Employee(
+					employee_SSN char(11) not null,
+					employee_name varchar(20) not null,
+					salary numeric(6,0),
+					dep_name varchar(15) not null,
+					date_of_hire date,
+					primary key (employee_SSN),
+					foreign key (dep_name) references Department)	
+create table Supervisor(
+					employee_name varchar(20) not null,
+					employee_SSN char(11) not null,
+					supervisor_name varchar(20) not null,
+					primary key(employee_SSN),
+					foreign key (employee_SSN) references Employee)
+
+insert into Department (dep_name, manager_name, starting_date) 
+values
+('hot foods', 'Al Capone', '1/1/2016'),	
+('sandwich', 'Bonnie Clyde', '1/1/2016'),
+('snacks', 'Pablo Escobar', '5/5/2015'),
+('beverage','Rita Bita', '3/18/2018');
+
+insert into Employee (employee_SSN, employee_name, salary, dep_name, date_of_hire)
+values 
+('134-56-8877', 'Jim Jones','28000','hot foods', '1/26/2015'),
+('138-56-8050','Rita Bita','32000','beverage','2/15/2017'),
+('334-55-8877','Holly Dew','29000','sandwich','1/15/2016'),
+('666-56-6666', 'Pablo Escobar','48000','snacks','1/26/2014'),
+('888-91-8870','Al Capone','40000','hot foods',' 1/26/2015'),
+('111-22-3333','Bonnie Clyde','43000','sandwich','4/7/2015');
+
+insert into Supervisor (employee_name, employee_SSN, supervisor_name) 
+values 
+('Jim Jones','134-56-8877','Rita Bita'),
+('Rita Bita','138-56-8050','Holly Dew'),
+('Holly Dew', '334-55-8877','Pablo Escobar'),
+('Pablo Escobar','666-56-6666','Rita Bita'),
+('Al Capone','888-91-8870','Pablo Escobar'),
+('Bonnie Clyde','111-22-3333','Al Capone');
