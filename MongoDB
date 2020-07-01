@@ -1,0 +1,318 @@
+#switch to the database
+use library
+
+#show the current running db
+db
+
+#create collections and insert data
+
+#insert book 1
+db.book.insert({
+    "_id": {
+        "$oid": "5e96409849c026966e18245b"
+    },
+    "book_id": {
+        "$numberDouble": "1"
+    },
+    "title": "Introduction to Python",
+    "primary_author": "Will Porter",
+    "secondary_author": "Dr. Donald",
+    "date_of_first_publication": {
+        "$date": {
+            "$numberLong": "1251262800000"
+        }
+    },
+    "number_of_pages": {
+        "$numberDouble": "1265"
+    },
+    "publisher": "Penguin Press",
+    "translator": "N/A",
+    "topic": ["Data Science", "Python", "Machine Learning"]
+})
+#insert book 2
+db.book.insert({
+    "_id": {
+        "$oid": "5e964a6a4abf4a05f8e7ee1c"
+    },
+    "title": "Secret of Anta",
+    "book_id": {
+        "$numberDouble": "2"
+    },
+    "primary_author": "Lituz Kamushi",
+    "secondary_author": "Yoma Kinimado",
+    "date_of_first_publication": {
+        "$date": {
+            "$numberLong": "1457416800000"
+        }
+    },
+    "number_of_pages": {
+        "$numberDouble": "2564"
+    },
+    "publisher": "Toyko House",
+    "translator": "Anna Lucina",
+    "topic": ["Fiction"]
+})
+#insert book 3
+db.book.insert({
+    "_id": {
+        "$oid": "5e964d8051fa9b0e58d19800"
+    },
+    "book_id": {
+        "$numberLong": "3"
+    },
+    "title": "Red It Be",
+    "primary_author": "Mai Kuraki",
+    "secondary_author": "N/A",
+    "date_of_first_publication": {
+        "$date": {
+            "$numberLong": "1528261200000"
+        }
+    },
+    "number_of_pages": {
+        "$numberDouble": "236"
+    },
+    "publisher": "N/A",
+    "translator": "N/A",
+    "topic": ["Music", "Live Project", "Japanese"]
+})
+#insert book 4
+db.book.insert({
+    "_id": {
+        "$oid": "5e964d9c51fa9b0e58d19801"
+    },
+    "book_id": {
+        "$numberLong": "4"
+    },
+    "title": "Light up with me",
+    "primary_author": "Paula C.Carter",
+    "secondary_author": "Ray Chou",
+    "date_of_first_publication": {
+        "$date": {
+            "$numberLong": "1507161600000"
+        }
+    },
+    "number_of_pages": {
+        "$numberDouble": "687"
+    },
+    "publisher": "Pearson",
+    "translator": "N/A",
+    "topic": ["Psychology", "Emotion Management"]
+})
+#insert book 5
+db.book.insert({
+    "_id": {
+        "$oid": "5e964dad51fa9b0e58d19802"
+    },
+    "book_id": {
+        "$numberLong": "5"
+    },
+    "title": "Tomorrow is the last time",
+    "primary_author": "Jane Porco",
+    "secondary_author": "Nicole N.Markus",
+    "date_of_first_publication": {
+        "$date": {
+            "$numberLong": "1305590400000"
+        }
+    },
+    "number_of_pages": {
+        "$numberDouble": "1658"
+    },
+    "publisher": "Howan Lite",
+    "translator": "N/A",
+    "topic": ["Fiction"]
+})
+
+
+#insert user1
+db.User.insert({
+    "_id": {
+        "$oid": "5e9651ae51fa9b0e58d19803"
+    },
+    "user_id": {
+        "$numberLong": "1001"
+    },
+    "book_id": {
+        "$numberLong": "1"
+    },
+    "name": "Mary Farman",
+    "phone": "646-264-8597",
+    "address": "7W 90th St, New York, NY, 10027",
+    "university_afflication": "Columbia University"
+})
+#insert user2
+db.User.insert({
+    "_id": {
+        "$oid": "5e96522551fa9b0e58d19804"
+    },
+    "user_id": {
+        "$numberLong": "1002"
+    },
+    "book_id": {
+        "$numberLong": "2"
+    },
+    "name": "Kelly Zhu",
+    "phone": "734-564-8921",
+    "address": "50 E 110th St, New York, NY, 10036",
+    "university_afflication": "Columbia University"
+})
+#insert user3
+db.User.insert({
+    "_id": {
+        "$oid": "5e96523051fa9b0e58d19805"
+    },
+    "user_id": {
+        "$numberLong": "1003"
+    },
+    "book_id": {
+        "$numberLong": "3"
+    },
+    "name": "Yiying Wang",
+    "phone": "343-658-0197",
+    "address": "30 W 116th St, New York, NY, 10036",
+    "university_afflication": "New York University"
+})
+#insert user4
+db.User.insert({
+    "_id": {
+        "$oid": "5e96524351fa9b0e58d19806"
+    },
+    "user_id": {
+        "$numberLong": "1004"
+    },
+    "book_id": {
+        "$numberLong": "4"
+    },
+    "name": "Bill Tomas",
+    "phone": "646-598-1205",
+    "address": "20 W 113th St, New York, NY, 10004",
+    "university_afflication": "Fordham University"
+})
+#insert user5
+db.User.insert({
+    "_id": {
+        "$oid": "5e96524e51fa9b0e58d19807"
+    },
+    "user_id": {
+        "$numberLong": "1005"
+    },
+    "book_id": {
+        "$numberLong": "5"
+    },
+    "name": "Lucas Wecker",
+    "phone": "929-647-3064",
+    "address": "60 W 110th St, New York, NY, 10026",
+    "university_afflication": "Pace University"
+})
+
+#create collection3: check_out
+#insert check out 1
+db.check_out.insert({
+    "_id": {
+        "$oid": "5e96533e51fa9b0e58d19808"
+    },
+    "book_id": {
+        "$numberLong": "1"
+    },
+    "topic": ["Data Sciencce", "Python", "Machine Learning"],
+    "check_out_user_id": {
+        "$numberLong": "1001"
+    },
+    "name": "Mary Farman",
+    "University_afflication": "Columbia University",
+    "check_out_time": {
+        "$date": {
+            "$numberLong": "1569214800000"
+        }
+    }
+})
+#insert check out 2
+db.check_out.insert({
+    "_id": {
+        "$oid": "5e9653f651fa9b0e58d19809"
+    },
+    "book_id": {
+        "$numberLong": "2"
+    },
+    "topic": ["Fiction"],
+    "check_out_user_id": {
+        "$numberLong": "1002"
+    },
+    "name": "Kelly Zhu",
+    "University_afflication": "Columbia University",
+    "check_out_time": {
+        "$date": {
+            "$numberLong": "1448928000000"
+        }
+    }
+})
+#insert check out 3
+db.check_out.insert({
+    "_id": {
+        "$oid": "5e96540751fa9b0e58d1980a"
+    },
+    "book_id": {
+        "$numberDecimal": "3"
+    },
+    "topic": ["Music", "Live Project", "Japanese"],
+    "check_out_user_id": {
+        "$numberLong": "1003"
+    },
+    "name": "Yiying Wang",
+    "University_afflication": "New York University",
+    "check_out_time": {
+        "$date": {
+            "$numberLong": "1586304000000"
+        }
+    }
+})
+#insert check out 4
+db.check_out.insert({
+    "_id": {
+        "$oid": "5e96541151fa9b0e58d1980b"
+    },
+    "book_id": {
+        "$numberLong": "4"
+    },
+    "topic": ["Psychology", "Emotion Management"],
+    "check_out_user_id": {
+        "$numberLong": "1004"
+    },
+    "name": "Bill Tomas",
+    "University_afflication": "Fordham University",
+    "check_out_time": {
+        "$date": {
+            "$numberLong": "1513209600000"
+        }
+    }
+})
+#insert check out 5
+db.check_out.insert({
+    "_id": {
+        "$oid": "5e96541a51fa9b0e58d1980c"
+    },
+    "book_id": {
+        "$numberLong": "5"
+    },
+    "topic": ["Fiction"],
+    "check_out_user_id": {
+        "$numberLong": "1005"
+    },
+    "name": "Lucas Wecker",
+    "University_afflication": "Pace University",
+    "check_out_time": {
+        "$date": {
+            "$numberLong": "1373673600000"
+        }
+    }
+})
+
+#ASSIGNMENT QUESTIONS
+
+1.Which books have been checked out since such and such date.
+db.check_out.find({"check_out_time":{"$gte":ISODate("2020-01-01T00:00:00.000Z")}}).pretty()
+2.Which users have checked out such and such book.
+db.User.find({"book_id":2}).pretty()
+3.How many books does the library have on such and such topic.
+db.book.find({"topic":"Fiction"}).pretty()
+4.Which users from Columbia University have checked out books on Machine Learning between this date and that date.
+db.check_out.find({"University_affiliation":"Columbia University", "topic":"Machine Learning", "check_out_time": {"$gte":ISODate("2019-01-01T00:00:00.000Z")} }).pretty()
