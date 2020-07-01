@@ -1,3 +1,5 @@
+#AE 1
+
 1. Find the names of all suppliers who supply a green part.
 SELECT S.sname
 FROM Suppliers AS S,Parts AS P, Catalog AS C
@@ -24,3 +26,55 @@ FROM Parts AS P
 WHERE P.color = ‘Green’ 
 OR        P.color = ‘Red’ 
 
+#AE 3
+
+{
+"Name":"Sichuan Dragon",
+"Cuisine":"Chinese",
+"Cuisine Region":"Sichuan",
+"Cost Level":"$$",
+"Decor":"Causal",
+"Noise Level":"Average",
+"WiFi":"Unavailable",
+"Credit Card Accepted":["Visa","MasterCard","Discover"],
+
+"Branch1":{
+"Name":"Sichuan Dragon 96",
+"Address":"116 West 96 St,New York",
+"Phone Number":"347-560-4389",
+"Web-site URL":"http://www.yelpyou.com/sichuandragon96",
+"Rating":"4.7",
+"Review":{
+"Review1":{"Sentence1":"Love the place","LinkToMore":"http://www.yelpyou.com/sichuandragon96/review1"},
+"Review2":{"Sentence1":"Good service","LinkToMore":"http://www.yelpyou.com/sichuandragon96/review2"},
+"Review3":{"Sentence1":"Nice environment","LinkToMore":"http://www.yelpyou.com/sichuandragon96/review3"}
+}
+},
+
+"Branch2":{
+"Name":"Sichuan Dragon 42",
+"Address":"295 West 42 St,New York",
+"Phone Number":"347-983-0308",
+"Web-site URL":"http://www.yelpyou.com/sichuandragon42",
+"Rating":"4.5",
+"Review":{
+"Review1":{"Sentence1":"Nice view along at window seat","LinkToMore":"http://www.yelpyou.com/sichuandragon42/review1"},
+"Review2":{"Sentence1":"Good taste but more expensive","LinkToMore":"http://www.yelpyou.com/sichuandragon42/review2"},
+"Review3":{"Sentence1":"Favorite eating place","LinkToMore":"http://www.yelpyou.com/sichuandragon42/review3"}
+}
+},
+
+"Branch3":{
+"Name":"Sichuan Dragon 28",
+"Address":"56 East 28 St, New York",
+"Phone Number":"347-985-9201",
+"Web-site URL":"http://www.yelpyou.com/sichuandragon28",
+"Rating":"4.9",
+"Review":{
+"Review1":{"Sentence1":"Closest Chinese restaurant near my office","LinkToMore":"http://www.yelpyou.com/sichuandragon28/review1"},
+"Review2":{"Sentence1":"A good choice for family dinner","LinkToMore":"http://www.yelpyou.com/sichuandragon28/review2"},
+"Review3":{"Sentence1":"This is authentic Chinese food","LinkToMore":"http://www.yelpyou.com/sichuandragon28/review3"}
+}
+},
+
+}
