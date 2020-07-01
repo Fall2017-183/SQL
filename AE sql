@@ -1,0 +1,26 @@
+1. Find the names of all suppliers who supply a green part.
+SELECT S.sname
+FROM Suppliers AS S,Parts AS P, Catalog AS C
+WHERE P.color = ‘Green’
+AND      P.pid = C.pid
+AND      C.sid = S.sid
+
+2. Find the names of all suppliers who are from Illinois.
+SELECT S.sname
+FROM Suppliers AS S
+WHERE S.address = ‘Illinois’
+
+3. Find the names of all suppliers who sell a red part costing less than $100.
+SELECT S.sname
+FROM Suppliers AS S,Parts AS P, Catalog AS C
+WHERE P.color = ‘Red’
+AND      C.cost < 100
+AND      P.pid = C.pid
+AND      C.sid = S.sid
+
+4. Find the names and colors of all parts that are green or red.
+SELECT P.pname, P.color
+FROM Parts AS P
+WHERE P.color = ‘Green’ 
+OR        P.color = ‘Red’ 
+
