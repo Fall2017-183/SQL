@@ -1,0 +1,125 @@
+CREATE KEYSPACE library with replication = {'class':'SimpleStrategy', 'replication_factor': 3};
+
+USE library;
+
+CREATE TABLE books (
+		book_id int Primary Key,
+		title Text,
+		primary_author Text,
+		secondary_author Text,
+		date_of_first_publication date,
+		pages int,
+		publisher Text,
+		translator Text,
+		is_fiction Boolean,
+		topic list<Text>,
+		check_out_time date);
+
+insert into books 
+	(book_id, title, primary_author,secondary_author,date_of_first_publication,pages,publisher, translator,is_fiction, topic, check_out_time) 
+values
+	(1, 'Introduction to Python','Will Porter', 'Dr Donald','2009-08-26', 1265, 'Penguin Press', 'N/A',False, ['Data Science','Python','Machine Learning'], '2019-09-23');
+
+insert into books 
+	(book_id, title, primary_author,secondary_author,date_of_first_publication,pages,publisher, translator,is_fiction, topic, check_out_time) 
+values
+	(2, 'Secret of Anta','Lituz Kamushi', 'Yoma Kinimado','2016-03-08', 2564, 'Toyko House', 'Anna Lucina',True, ['Fiction'], '2015-12-01');
+
+insert into books 
+	(book_id, title, primary_author,secondary_author,date_of_first_publication,pages,publisher, translator,is_fiction, topic, check_out_time) 
+values
+	(3, 'Red It Be','Mai Kuraki', 'N/A','2018-06-06', 236, 'Norman Music', 'N/A',False, ['Music','Live Project','Japanese'], '2020-04-08');
+
+insert into books 
+	(book_id, title, primary_author,secondary_author,date_of_first_publication,pages,publisher, translator,is_fiction, topic, check_out_time) 
+values
+	(4, 'Light Up With Me','Paula C. Carter', 'Ray Chou','2017-10-05', 687, 'Pearson', 'N/A',False, ['Psychology','Emotion Management'], '2017-12-14');
+
+insert into books 
+	(book_id, title, primary_author,secondary_author,date_of_first_publication,pages,publisher, translator,is_fiction, topic, check_out_time) 
+values
+	(5, 'Tomorrow Is The Last Time','Jane Porco', 'Nicole N. Markus','2011-05-17', 1658, 'Howan Lite', 'N/A',True, ['Fiction'], '2013-07-13');
+
+CREATE TABLE users(
+		user_id int Primary Key,
+		name Text,
+		phone Text,
+		address Text,
+		university_afflication Text,
+		book_id int,
+		title Text,
+		check_out_time date);
+
+insert into users
+	(user_id, name, phone, address, university_afflication, book_id, title, check_out_time)
+values
+	(1001, 'Mary Farman', '646-123-7854', '57W 90th St, New York, NY, 10027','Columbia University', 1, 'Introduction to Python','2019-09-23');
+
+insert into users
+	(user_id, name, phone, address, university_afflication, book_id, title, check_out_time)
+values
+	(1002, 'Kelly Zhu', '734-568-4597', '50 E 110th St, New York, NY, 10036','Columbia University', 2, 'Secret of Anta','2015-12-01');
+
+insert into users
+	(user_id, name, phone, address, university_afflication, book_id, title, check_out_time)
+values
+	(1003, 'Yiying Wang', '646-458-1034', '30 W 116th St, New York, NY, 10036','New York University', 3, 'Red It Be','2020-04-08');
+
+insert into users
+	(user_id, name, phone, address, university_afflication, book_id, title, check_out_time)
+values
+	(1004, 'Bill Tomas', '929-486-7301', '20 W 113th St, New York, NY, 10004','Fordham University', 4, 'Light Up With Me','2017-12-14');
+
+insert into users
+	(user_id, name, phone, address, university_afflication, book_id, title, check_out_time)
+values
+	(1005, 'Lucas Wecker', '343-897-5017', '60 W 110th St, New York, NY, 10026','Pace University', 5, 'Tomorrow Is The Last Time','2013-07-13');
+
+CREATE TABLE check_out(
+		book_id int Primary Key,
+		topic list<Text>,
+		check_out_user_id int,
+		name Text,
+		university_afflication Text,
+		check_out_time date);
+
+insert into check_out 
+	(book_id, topic, check_out_user_id, name, university_afflication, check_out_time)
+values
+	(1, ['Data Science','Python','Machine Learning'], 1001,'Mary Farman','Columbia University','2019-09-23');
+
+insert into check_out 
+	(book_id, topic, check_out_user_id, name, university_afflication, check_out_time)
+values
+	(2, ['Fiction'], 1001,'Kelly Zhu','Columbia University','2015-12-01');
+
+insert into check_out 
+	(book_id, topic, check_out_user_id, name, university_afflication, check_out_time)
+values
+	(3, ['Music','Live Project','Japanese'], 1001,'Yiying Wang','New York University','2020-04-08');
+
+insert into check_out 
+	(book_id, topic, check_out_user_id, name, university_afflication, check_out_time)
+values
+	(4, ['Psychology','Emotion Management'], 1001,'Bill Tomas','Fordham University','2017-12-14');
+
+insert into check_out 
+	(book_id, topic, check_out_user_id, name, university_afflication, check_out_time)
+values
+	(5, ['Fiction'], 1001,'Lucas Wecker','Pace University','2013-07-13');
+
+#1 Which books have been checked out since such and such date?
+
+select * from books where check_out_time >= '2018-01-01' ALLOW FILTERING;
+
+#2 Which users have checked out such and such book?
+
+select * from users where title = 'Red It Be' ALLOW FILTERING;
+
+#3 How many books does the library have on such and such topic?
+
+select COUNT(*) from books where topic contains 'Fiction' ALLOW FILTERING ;
+
+#4 Which users from Columbia University have checked out books on Machine Learning between this date and that date? 
+
+select * from check_out where university_afflication = 'Columbia University' and topic contains 'Machine Learning' and check_out_time >= '2019-01-01' and check_out_time <= '2020-01-01' ALLOW FILTERING;
